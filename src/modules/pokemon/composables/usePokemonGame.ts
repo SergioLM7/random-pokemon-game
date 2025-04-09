@@ -6,10 +6,10 @@ export const usePokemonGame = () => {
   const gameStatus = ref<GameStatus>(GameStatus.Playing);
   const pokemons = ref<Pokemon[]>([]);
   const pokemonsOptions = ref<Pokemon[]>([]);
-  const randomPokemon = computed<string>(() => {
+  const randomPokemon = computed(() => {
     const randomIndex = Math.floor(Math.random() * pokemonsOptions.value.length);
 
-    return pokemonsOptions.value[randomIndex].name || 'No Pokemon finded';
+    return pokemonsOptions.value[randomIndex] || 'No Pokemon finded';
   });
   const isLoading = computed(() => pokemons.value.length === 0);
 

@@ -9,7 +9,7 @@
     <h1 class="text-3xl">Which Pokemon is this?</h1>
     <h3>{{ randomPokemon }}</h3>
 
-    <PokemonPicture />
+    <PokemonPicture :pokemonId="randomPokemon.id" />
 
     <GameOptions />
 
