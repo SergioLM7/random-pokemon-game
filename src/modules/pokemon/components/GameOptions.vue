@@ -1,26 +1,33 @@
 <template>
-  <section class="mt-5">
-    <ul>
-      <li
-        class=" bg-white shadow-md rounded-lg p-3 m-2 cursor-pointer w-40 text-center transition-all hover:bg-gray-400">
-        Pokemon 1</li>
-      <li
-        class=" bg-white shadow-md rounded-lg p-3 m-2 cursor-pointer w-40 text-center transition-all hover:bg-gray-400">
-        Pokemon 2</li>
-      <li
-        class=" bg-white shadow-md rounded-lg p-3 m-2 cursor-pointer w-40 text-center transition-all hover:bg-gray-400">
-        Pokemon 3</li>
-      <li
-        class=" bg-white shadow-md rounded-lg p-3 m-2 cursor-pointer w-40 text-center transition-all hover:bg-gray-400">
-        Pokemon 4</li>
-    </ul>
+  <section class="mt-5 flex flex-col justify-center items-center">
+    <button v-for="{ name, id } in options" :key="id" :class="[
+      'special-button capitalize disabled:shadow-none disabled:bg-gray-600 disabled:cursor-auto',
+      {
+        correct: id === correctAnswer && blockSelection,
+        incorrect: id !== correctAnswer && blockSelection,
+      },
+    ]" @click="$emit('selectedOption', id)" :disabled="blockSelection">
+      {{ name }}
+    </button>
   </section>
 </template>
 
 <script setup lang="ts">
+import type { Pokemon } from '../interfaces';
+
+interface Props {
+  options: Pokemon[];
+  blockSelection: boolean;
+  correctAnswer: number;
+}
+
+defineProps<Props>();
+
+defineEmits<{
+  selectedOption: [id: number];
+}>();
+
 
 </script>
 
-<style>
-li {}
-</style>
+<style></style>

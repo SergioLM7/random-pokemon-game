@@ -4,3 +4,15 @@ html,
 body {
   background-color: #f1f1f1;
 }
+
+.special-button {
+  @apply bg-white shadow-md rounded-lg p-3 m-2 cursor-pointer w-40 text-center transition-all hover:bg-gray-400;
+}
+
+.correct {
+  @apply bg-blue-500 text-white;
+}
+
+.incorrect {
+  @apply bg-red-100 opacity-70;
+}

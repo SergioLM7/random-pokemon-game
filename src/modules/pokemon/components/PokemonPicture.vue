@@ -1,6 +1,7 @@
 <template>
   <section class="mt-5">
-    <img :src="pokemonImage" alt="Pokemon Random Picture" class="brightness-0" />
+    <img v-if="showPokemon" :src="pokemonImage" alt="Pokemon Random Picture" class="fade-in" />
+    <img v-else :src="pokemonImage" alt="Pokemon Random Picture" class="brightness-0" />
   </section>
 </template>
 
@@ -9,9 +10,12 @@ import { computed } from "vue";
 
 interface Props {
   pokemonId: number;
+  showPokemon?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  showPokemon: false
+});
 
 const pokemonImage = computed(() => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`
